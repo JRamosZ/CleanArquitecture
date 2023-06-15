@@ -1,6 +1,6 @@
 require("dotenv").config(); //lo mas pronto en nuestra aplicación
-const express = require("express");
 const mongoose = require("mongoose");
+const app = require("./src/server");
 
 const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 // Variable de entorno
@@ -10,6 +10,9 @@ mongoose
   .connect(dataBaseURL)
   .then(() => {
     console.log("We are connected to our database");
+    app.listen(8080, () => {
+      console.log("Nuestra API de clean arquitecture está prendida");
+    });
   })
   .catch((error) => {
     console.log("We have an error", error);
